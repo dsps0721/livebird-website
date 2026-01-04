@@ -263,26 +263,41 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-primary text-primary-foreground relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/images/hero-bg.jpg')] bg-cover bg-center opacity-10 mix-blend-overlay" />
+      <section className="py-24 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-purple-600/90 backdrop-blur-xl z-0" />
+        <div className="absolute inset-0 bg-[url('/images/hero-bg.jpg')] bg-cover bg-center opacity-20 mix-blend-overlay z-0" />
+        
+        {/* Animated Particles/Glow */}
+        <div className="absolute top-0 left-1/4 w-64 h-64 bg-white/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-400/20 rounded-full blur-3xl animate-pulse delay-1000" />
+
         <div className="container relative z-10">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-4xl lg:text-5xl font-bold mb-2 font-heading">28%</div>
-              <div className="text-primary-foreground/80">CAGR Growth (2023-2032)</div>
-            </div>
-            <div>
-              <div className="text-4xl lg:text-5xl font-bold mb-2 font-heading">$87B+</div>
-              <div className="text-primary-foreground/80">Market Size by 2023</div>
-            </div>
-            <div>
-              <div className="text-4xl lg:text-5xl font-bold mb-2 font-heading">80%</div>
-              <div className="text-primary-foreground/80">Response Efficiency</div>
-            </div>
-            <div>
-              <div className="text-4xl lg:text-5xl font-bold mb-2 font-heading">20M+</div>
-              <div className="text-primary-foreground/80">Funding Raised</div>
-            </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+            {[
+              { label: "AI Response Time", value: "< 0.5s", icon: Zap },
+              { label: "Platform Coverage", value: "Global", icon: Globe },
+              { label: "Uptime Guarantee", value: "99.9%", icon: CheckCircle2 },
+              { label: "Active Streamers", value: "10k+", icon: Users },
+            ].map((stat, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="relative group"
+              >
+                <div className="absolute inset-0 bg-white/5 rounded-2xl blur-xl group-hover:bg-white/10 transition-colors duration-500" />
+                <div className="relative p-6 text-center border border-white/10 rounded-2xl bg-white/5 backdrop-blur-sm hover:transform hover:-translate-y-1 transition-all duration-300">
+                  <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-white/10 flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
+                    <stat.icon className="w-6 h-6" />
+                  </div>
+                  <div className="text-4xl lg:text-5xl font-bold mb-2 font-heading text-white tracking-tight">{stat.value}</div>
+                  <div className="text-white/70 font-medium uppercase tracking-wider text-xs">{stat.label}</div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
