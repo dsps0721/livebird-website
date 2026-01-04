@@ -58,19 +58,11 @@ export default function Home() {
               
               <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                 <Button 
-                  onClick={() => document.querySelector("#pricing")?.scrollIntoView({ behavior: "smooth" })}
+                  onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
                   size="lg" 
                   className="rounded-full px-8 h-12 text-base shadow-lg shadow-primary/25 bg-gradient-to-r from-primary to-emerald-500 hover:scale-105 transition-transform"
                 >
                   Start Free Trial <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-                <Button 
-                  onClick={() => document.querySelector("#features")?.scrollIntoView({ behavior: "smooth" })}
-                  size="lg" 
-                  variant="outline" 
-                  className="rounded-full px-8 h-12 text-base border-primary/20 hover:bg-primary/5 backdrop-blur-sm"
-                >
-                  <Play className="mr-2 w-4 h-4 fill-current" /> Watch Demo
                 </Button>
               </motion.div>
               
@@ -313,7 +305,7 @@ export default function Home() {
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /> Basic Analytics</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /> 5 AI Bot Hours/mo</li>
                 </ul>
-                <Button className="w-full" variant="outline" onClick={() => window.location.href = "mailto:sales@livebird.ai"}>Contact Sales</Button>
+                <Button className="w-full" variant="outline" onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}>Contact Sales</Button>
               </CardContent>
             </Card>
             
@@ -329,7 +321,7 @@ export default function Home() {
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /> 20 AI Bot Hours/mo</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /> Auto-Clipping</li>
                 </ul>
-                <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90" onClick={() => window.location.href = "mailto:sales@livebird.ai"}>Contact Sales</Button>
+                <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90" onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}>Contact Sales</Button>
               </CardContent>
             </Card>
             
@@ -343,35 +335,78 @@ export default function Home() {
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /> Unlimited AI Bot</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /> Dedicated Support</li>
                 </ul>
-                <Button className="w-full" variant="outline" onClick={() => window.location.href = "mailto:sales@livebird.ai"}>Contact Sales</Button>
+                <Button className="w-full" variant="outline" onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}>Contact Sales</Button>
               </CardContent>
             </Card>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section id="about" className="py-24 relative overflow-hidden">
+      {/* Contact Form Section */}
+      <section id="contact" className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-purple-500/20 backdrop-blur-3xl -z-10" />
-        <div className="container text-center relative z-10">
-          <h2 className="font-heading text-4xl md:text-5xl font-bold mb-6">Ready to Transform Your Live Streaming?</h2>
-          <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">Join thousands of creators and brands using LiveBird to automate their growth.</p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              onClick={() => window.location.href = "mailto:sales@livebird.ai"}
-              size="lg" 
-              className="rounded-full px-10 h-14 text-lg shadow-xl bg-primary text-primary-foreground hover:scale-105 transition-transform"
-            >
-              Contact Sales
-            </Button>
-            <Button 
-              onClick={() => window.location.href = "mailto:demo@livebird.ai"}
-              size="lg" 
-              variant="outline" 
-              className="rounded-full px-10 h-14 text-lg bg-white/50 hover:bg-white/80 border-white/40"
-            >
-              Schedule a Demo
-            </Button>
+        <div className="container relative z-10">
+          <div className="max-w-4xl mx-auto glass-panel rounded-3xl p-8 md:p-12 shadow-2xl border border-white/40">
+            <div className="text-center mb-10">
+              <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Get Started with LiveBird</h2>
+              <p className="text-muted-foreground text-lg">Fill out the form below and our team will get back to you within 24 hours.</p>
+            </div>
+            
+            <form className="grid grid-cols-1 md:grid-cols-2 gap-6" onSubmit={(e) => e.preventDefault()}>
+              <div className="space-y-2">
+                <label htmlFor="firstName" className="text-sm font-medium">First Name</label>
+                <input 
+                  id="firstName" 
+                  type="text" 
+                  className="w-full px-4 py-3 rounded-xl bg-white/50 border border-white/30 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                  placeholder="John"
+                />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="lastName" className="text-sm font-medium">Last Name</label>
+                <input 
+                  id="lastName" 
+                  type="text" 
+                  className="w-full px-4 py-3 rounded-xl bg-white/50 border border-white/30 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                  placeholder="Doe"
+                />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="email" className="text-sm font-medium">Work Email</label>
+                <input 
+                  id="email" 
+                  type="email" 
+                  className="w-full px-4 py-3 rounded-xl bg-white/50 border border-white/30 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                  placeholder="john@company.com"
+                />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="company" className="text-sm font-medium">Company Name</label>
+                <input 
+                  id="company" 
+                  type="text" 
+                  className="w-full px-4 py-3 rounded-xl bg-white/50 border border-white/30 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+                  placeholder="Acme Inc."
+                />
+              </div>
+              <div className="space-y-2 md:col-span-2">
+                <label htmlFor="message" className="text-sm font-medium">How can we help?</label>
+                <textarea 
+                  id="message" 
+                  rows={4}
+                  className="w-full px-4 py-3 rounded-xl bg-white/50 border border-white/30 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none"
+                  placeholder="Tell us about your live streaming needs..."
+                />
+              </div>
+              <div className="md:col-span-2 pt-4">
+                <Button size="lg" className="w-full rounded-xl h-14 text-lg shadow-xl bg-primary text-primary-foreground hover:scale-[1.02] transition-transform">
+                  Submit Request
+                </Button>
+                <p className="text-center text-xs text-muted-foreground mt-4">
+                  By submitting this form, you agree to our Terms of Service and Privacy Policy.
+                </p>
+              </div>
+            </form>
           </div>
         </div>
       </section>
