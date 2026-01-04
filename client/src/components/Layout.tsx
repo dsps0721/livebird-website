@@ -18,12 +18,20 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   }, []);
 
   const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/solutions", label: "Solutions" },
-    { href: "/features", label: "Features" },
-    { href: "/pricing", label: "Pricing" },
-    { href: "/about", label: "About" },
+    { href: "#home", label: "Home" },
+    { href: "#solutions", label: "Solutions" },
+    { href: "#features", label: "Features" },
+    { href: "#pricing", label: "Pricing" },
+    { href: "#about", label: "About" },
   ];
+
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <div className="min-h-screen flex flex-col font-sans bg-background selection:bg-primary/20 selection:text-primary-foreground">
@@ -58,29 +66,25 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <Link key={link.href} href={link.href}>
-                <span
-                  className={cn(
-                    "text-sm font-medium transition-colors hover:text-primary cursor-pointer relative py-1",
-                    location === link.href
-                      ? "text-primary font-semibold"
-                      : "text-muted-foreground"
-                  )}
-                >
-                  {link.label}
-                  {location === link.href && (
-                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-primary rounded-full" />
-                  )}
-                </span>
-              </Link>
+              <a 
+                key={link.href} 
+                href={link.href}
+                onClick={(e) => scrollToSection(e, link.href)}
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary cursor-pointer relative py-1"
+              >
+                {link.label}
+              </a>
             ))}
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
-            <Button variant="ghost" className="font-medium hover:bg-primary/10 hover:text-primary">
-              Log in
-            </Button>
-            <Button className="rounded-full px-6 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all duration-300 bg-gradient-to-r from-primary to-emerald-500 hover:scale-105">
+            <Button 
+              onClick={(e) => {
+                e.preventDefault();
+                document.querySelector("#pricing")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="rounded-full px-6 shadow-lg shadow-primary/20 hover:shadow-primary/40 transition-all duration-300 bg-gradient-to-r from-primary to-emerald-500 hover:scale-105"
+            >
               Get Started
             </Button>
           </div>
@@ -96,25 +100,24 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <div className="flex flex-col gap-8 mt-10">
                 <div className="flex flex-col gap-4">
                   {navLinks.map((link) => (
-                    <Link key={link.href} href={link.href}>
-                      <span
-                        className={cn(
-                          "text-lg font-medium transition-colors hover:text-primary cursor-pointer block py-2 border-b border-border/50",
-                          location === link.href
-                            ? "text-primary"
-                            : "text-foreground"
-                        )}
-                      >
-                        {link.label}
-                      </span>
-                    </Link>
+                    <a 
+                      key={link.href} 
+                      href={link.href}
+                      onClick={(e) => scrollToSection(e, link.href)}
+                      className="text-lg font-medium text-foreground transition-colors hover:text-primary cursor-pointer block py-2 border-b border-border/50"
+                    >
+                      {link.label}
+                    </a>
                   ))}
                 </div>
                 <div className="flex flex-col gap-4 mt-4">
-                  <Button variant="outline" className="w-full justify-center">
-                    Log in
-                  </Button>
-                  <Button className="w-full justify-center bg-primary text-primary-foreground">
+                  <Button 
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document.querySelector("#pricing")?.scrollIntoView({ behavior: "smooth" });
+                    }}
+                    className="w-full justify-center bg-primary text-primary-foreground"
+                  >
                     Get Started
                   </Button>
                 </div>
@@ -156,20 +159,17 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div>
               <h4 className="font-heading font-semibold mb-4">Product</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li className="hover:text-primary cursor-pointer transition-colors">Features</li>
-                <li className="hover:text-primary cursor-pointer transition-colors">Solutions</li>
-                <li className="hover:text-primary cursor-pointer transition-colors">Pricing</li>
-                <li className="hover:text-primary cursor-pointer transition-colors">Updates</li>
+                <li><a href="#features" onClick={(e) => scrollToSection(e, "#features")} className="hover:text-primary cursor-pointer transition-colors">Features</a></li>
+                <li><a href="#solutions" onClick={(e) => scrollToSection(e, "#solutions")} className="hover:text-primary cursor-pointer transition-colors">Solutions</a></li>
+                <li><a href="#pricing" onClick={(e) => scrollToSection(e, "#pricing")} className="hover:text-primary cursor-pointer transition-colors">Pricing</a></li>
               </ul>
             </div>
             
             <div>
               <h4 className="font-heading font-semibold mb-4">Company</h4>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li className="hover:text-primary cursor-pointer transition-colors">About Us</li>
-                <li className="hover:text-primary cursor-pointer transition-colors">Careers</li>
-                <li className="hover:text-primary cursor-pointer transition-colors">Blog</li>
-                <li className="hover:text-primary cursor-pointer transition-colors">Contact</li>
+                <li><a href="#about" onClick={(e) => scrollToSection(e, "#about")} className="hover:text-primary cursor-pointer transition-colors">About Us</a></li>
+                <li><a href="mailto:contact@livebird.ai" className="hover:text-primary cursor-pointer transition-colors">Contact</a></li>
               </ul>
             </div>
             
@@ -178,7 +178,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li className="hover:text-primary cursor-pointer transition-colors">Privacy Policy</li>
                 <li className="hover:text-primary cursor-pointer transition-colors">Terms of Service</li>
-                <li className="hover:text-primary cursor-pointer transition-colors">Cookie Policy</li>
               </ul>
             </div>
           </div>

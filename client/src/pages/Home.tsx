@@ -31,7 +31,7 @@ export default function Home() {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="relative pt-10 pb-20 lg:pt-20 lg:pb-32 overflow-hidden">
+      <section id="home" className="relative pt-10 pb-20 lg:pt-20 lg:pb-32 overflow-hidden">
         <div className="container relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div 
@@ -57,10 +57,19 @@ export default function Home() {
               </motion.p>
               
               <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Button size="lg" className="rounded-full px-8 h-12 text-base shadow-lg shadow-primary/25 bg-gradient-to-r from-primary to-emerald-500 hover:scale-105 transition-transform">
+                <Button 
+                  onClick={() => document.querySelector("#pricing")?.scrollIntoView({ behavior: "smooth" })}
+                  size="lg" 
+                  className="rounded-full px-8 h-12 text-base shadow-lg shadow-primary/25 bg-gradient-to-r from-primary to-emerald-500 hover:scale-105 transition-transform"
+                >
                   Start Free Trial <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
-                <Button size="lg" variant="outline" className="rounded-full px-8 h-12 text-base border-primary/20 hover:bg-primary/5 backdrop-blur-sm">
+                <Button 
+                  onClick={() => document.querySelector("#features")?.scrollIntoView({ behavior: "smooth" })}
+                  size="lg" 
+                  variant="outline" 
+                  className="rounded-full px-8 h-12 text-base border-primary/20 hover:bg-primary/5 backdrop-blur-sm"
+                >
                   <Play className="mr-2 w-4 h-4 fill-current" /> Watch Demo
                 </Button>
               </motion.div>
@@ -135,7 +144,7 @@ export default function Home() {
       </section>
 
       {/* Problems Section */}
-      <section className="py-20 bg-white/30 dark:bg-black/30 backdrop-blur-sm">
+      <section id="solutions" className="py-20 bg-white/30 dark:bg-black/30 backdrop-blur-sm">
         <div className="container">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Why Traditional Live Streaming is Hard</h2>
@@ -175,7 +184,7 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="py-24 relative overflow-hidden">
+      <section id="features" className="py-24 relative overflow-hidden">
         <div className="container relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center mb-24">
             <div className="order-2 lg:order-1 relative">
@@ -287,7 +296,7 @@ export default function Home() {
       </section>
 
       {/* Pricing Teaser */}
-      <section className="py-24">
+      <section id="pricing" className="py-24">
         <div className="container">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">Simple, Transparent Pricing</h2>
@@ -304,7 +313,7 @@ export default function Home() {
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /> Basic Analytics</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /> 5 AI Bot Hours/mo</li>
                 </ul>
-                <Button className="w-full" variant="outline">Get Started</Button>
+                <Button className="w-full" variant="outline" onClick={() => window.location.href = "mailto:sales@livebird.ai"}>Contact Sales</Button>
               </CardContent>
             </Card>
             
@@ -320,7 +329,7 @@ export default function Home() {
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /> 20 AI Bot Hours/mo</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /> Auto-Clipping</li>
                 </ul>
-                <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90">Get Started</Button>
+                <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90" onClick={() => window.location.href = "mailto:sales@livebird.ai"}>Contact Sales</Button>
               </CardContent>
             </Card>
             
@@ -334,7 +343,7 @@ export default function Home() {
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /> Unlimited AI Bot</li>
                   <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-primary" /> Dedicated Support</li>
                 </ul>
-                <Button className="w-full" variant="outline">Contact Sales</Button>
+                <Button className="w-full" variant="outline" onClick={() => window.location.href = "mailto:sales@livebird.ai"}>Contact Sales</Button>
               </CardContent>
             </Card>
           </div>
@@ -342,16 +351,25 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 relative overflow-hidden">
+      <section id="about" className="py-24 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-purple-500/20 backdrop-blur-3xl -z-10" />
         <div className="container text-center relative z-10">
           <h2 className="font-heading text-4xl md:text-5xl font-bold mb-6">Ready to Transform Your Live Streaming?</h2>
           <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto">Join thousands of creators and brands using LiveBird to automate their growth.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="rounded-full px-10 h-14 text-lg shadow-xl bg-primary text-primary-foreground hover:scale-105 transition-transform">
-              Start Your Free Trial
+            <Button 
+              onClick={() => window.location.href = "mailto:sales@livebird.ai"}
+              size="lg" 
+              className="rounded-full px-10 h-14 text-lg shadow-xl bg-primary text-primary-foreground hover:scale-105 transition-transform"
+            >
+              Contact Sales
             </Button>
-            <Button size="lg" variant="outline" className="rounded-full px-10 h-14 text-lg bg-white/50 hover:bg-white/80 border-white/40">
+            <Button 
+              onClick={() => window.location.href = "mailto:demo@livebird.ai"}
+              size="lg" 
+              variant="outline" 
+              className="rounded-full px-10 h-14 text-lg bg-white/50 hover:bg-white/80 border-white/40"
+            >
               Schedule a Demo
             </Button>
           </div>
